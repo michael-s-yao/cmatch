@@ -30,12 +30,14 @@ An unmatched applicant satisfies $\mu(a_i) = \emptyset$.
 Not all matches are desirable - for example, having all applicants go unmatched in a particular year would be a valid matching correspondence, but is obviously sub-optimal. We define a "desirable" match based on its **stability**: a particular matching $\mu$ is **stable** if it contains no **blocking pair**. A pair $(a_i, p_j)$ with $a_i \in R_j$ and $p_j \in L_i$ is blocking if both of the following hold:
 
 1. **Applicant prefers $p_j$:**
+
 $$
 p_j \succ_{a_i} \mu(a_i) \quad \text{(or } \mu(a_i) = \emptyset\text{)}
 $$
 
 2. **Program prefers $a_i$:** either the program has unused capacity (i.e., $|\mu^{-1}(p_j)| < q_j$)
 or $a_i$ is ranked above the program's current worst match: i.e.,
+
 $$
 a_i \succ_{p_j} a^* \quad \text{where } a^* = \underset{a' \in \mu^{-1}(p_j)}{\arg\max}\, \text{rank}_{p_j}(a')
 $$
@@ -58,6 +60,7 @@ The implementation uses **applicant-proposing deferred acceptance**. Applicants 
 **Output:** Stable matching $\mu$.
 
 **Initialize:**
+
 $$
 \mu(a_i) \leftarrow \emptyset \;\forall\, a_i \in A, \qquad
 \mu^{-1}(p_j) \leftarrow \emptyset \;\forall\, p_j \in P, \qquad
@@ -74,16 +77,21 @@ $$
 \mu^{-1}(p) \leftarrow \mu^{-1}(p) \cup \{a\}, \quad \mu(a) \leftarrow p
 $$
 5. **Else** *(program is full)*: let
+
 $$
 a^* = \underset{a' \in \mu^{-1}(p)}{\arg\max}\, \text{rank}_p(a')
 $$
+
    - **If** $\text{rank}_p(a) < \text{rank}_p(a^*)$ &nbsp;&nbsp; *(a is preferred over worst current match)*:
+
 $$
 \mu^{-1}(p) \leftarrow \bigl(\mu^{-1}(p) \setminus \{a^*\}\bigr) \cup \{a\}
 $$
+
 $$
 \mu(a) \leftarrow p, \quad \mu(a^*) \leftarrow \emptyset, \quad Q \leftarrow Q \cup \{a^*\}
 $$
+
    - **Else**: re-enqueue $a$.
 
 ---
