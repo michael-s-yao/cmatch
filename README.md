@@ -87,11 +87,11 @@ $$
    - **If** $\text{rank}_p(a) < \text{rank}_p(a^{\ast})$ &nbsp;&nbsp; *($a$ is preferred over worst current match)*:
 
 $$
-\mu^{-1}(p) \leftarrow \bigl(\mu^{-1}(p) \setminus \{a^{*}\}\bigr) \cup \{a\}
+\mu^{-1}(p) \leftarrow \bigl(\mu^{-1}(p) \setminus \{a^{\ast}\}\bigr) \cup \{a\}
 $$
 
 $$
-\mu(a) \leftarrow p, \quad \mu(a^{*}) \leftarrow \emptyset, \quad Q \leftarrow Q \cup \{a^{*}\}
+\mu(a) \leftarrow p, \quad \mu(a^{\ast}) \leftarrow \emptyset, \quad Q \leftarrow Q \cup \{a^{\ast}\}
 $$
 
    - **Else**: re-enqueue $a$.
