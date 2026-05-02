@@ -71,7 +71,7 @@ $$
 
 1. Remove any $a \in Q$.
 2. Let $p \leftarrow \text{next}(a)$.  If no such $p$ exists, skip (a remains unmatched).
-3. If $a \notin R_p$, re-enqueue $a$ and go to 1.  *(Program does not rank applicant.)*
+3. If $a \notin R_p$, re-enqueue $a$ and go to step 1.  *(Program does not rank applicant.)*
 4. **If** $|\mu^{-1}(p)| < q_p$ &nbsp;&nbsp; *(open slot)*:
 $$
 \mu^{-1}(p) \leftarrow \mu^{-1}(p) \cup \{a\}, \quad \mu(a) \leftarrow p
@@ -82,14 +82,14 @@ $$
 a^* = \underset{a' \in \mu^{-1}(p)}{\arg\max}\, \text{rank}_p(a')
 $$
 
-   - **If** $\text{rank}_p(a) < \text{rank}_p(a^*)$ &nbsp;&nbsp; *(a is preferred over worst current match)*:
+   - **If** $\text{rank}_p(a) < \text{rank}_p(a^{*})$ &nbsp;&nbsp; *($a$ is preferred over worst current match)*:
 
 $$
-\mu^{-1}(p) \leftarrow \bigl(\mu^{-1}(p) \setminus \{a^*\}\bigr) \cup \{a\}
+\mu^{-1}(p) \leftarrow \bigl(\mu^{-1}(p) \setminus \{a^{*}\}\bigr) \cup \{a\}
 $$
 
 $$
-\mu(a) \leftarrow p, \quad \mu(a^*) \leftarrow \emptyset, \quad Q \leftarrow Q \cup \{a^*\}
+\mu(a) \leftarrow p, \quad \mu(a^{*}) \leftarrow \emptyset, \quad Q \leftarrow Q \cup \{a^{*}\}
 $$
 
    - **Else**: re-enqueue $a$.
