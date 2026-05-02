@@ -84,7 +84,7 @@ $$
 a^* = \underset{a' \in \mu^{-1}(p)}{\arg\max} \text{rank}_p(a')
 $$
 
-   - **If** $\text{rank}_p(a) < \text{rank}_p(a^{\ast})$ &nbsp;&nbsp; *($a$ is preferred over worst current match)*:
+   - **If** $\text{rank}_p(a) < \text{rank}_p(a^{\ast})$ &nbsp;&nbsp; *(a is preferred over worst current match)*:
 
 $$
 \mu^{-1}(p) \leftarrow \bigl(\mu^{-1}(p) \setminus \{a^{\ast}\}\bigr) \cup \{a\}
