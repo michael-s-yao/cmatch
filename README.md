@@ -14,11 +14,11 @@ Each applicant $a_i$ holds a strict, transitive preference ordering $\succ_{a_i}
 A **matching** is defined as a a correspondence $\mu : A \to 2^P$ and $\mu^{-1} : P \to 2^A$ satisfying
 
 $$
-\mu(a_i) \in L_i \cup \{\emptyset\}, \quad |\mu(a_i)| \leq 1 \quad \forall\, a_i \in A
+\mu(a_i) \in L_i \cup \{\emptyset\}, \quad |\mu(a_i)| \leq 1 \quad \forall a_i \in A
 $$
 
 $$
-\mu^{-1}(p_j) \subseteq R_j, \quad |\mu^{-1}(p_j)| \leq q_j \quad \forall\, p_j \in P
+\mu^{-1}(p_j) \subseteq R_j, \quad |\mu^{-1}(p_j)| \leq q_j \quad \forall p_j \in P
 $$
 
 $$
@@ -39,7 +39,7 @@ $$
 or $a_i$ is ranked above the program's current worst match: i.e.,
 
 $$
-a_i \succ_{p_j} a^* \quad \text{where } a^* = \underset{a' \in \mu^{-1}(p_j)}{\arg\max}\, \text{rank}_{p_j}(a')
+a_i \succ_{p_j} a^* \quad \text{where } a^* = \underset{a' \in \mu^{-1}(p_j)}{\arg\max} \text{rank}_{p_j}(a')
 $$
 
 Here $\text{rank}_{p_j}(a)$ denotes the 0-based position of $a$ in $p_j$'s preference list (lower is better).
@@ -62,8 +62,8 @@ The implementation uses **applicant-proposing deferred acceptance**. Applicants 
 **Initialize:**
 
 $$
-\mu(a_i) \leftarrow \emptyset \;\forall\, a_i \in A, \qquad
-\mu^{-1}(p_j) \leftarrow \emptyset \;\forall\, p_j \in P, \qquad
+\mu(a_i) \leftarrow \emptyset \quad\forall a_i \in A, \qquad
+\mu^{-1}(p_j) \leftarrow \emptyset \quad\forall p_j \in P, \qquad
 Q \leftarrow A
 $$
 
@@ -73,16 +73,18 @@ $$
 2. Let $p \leftarrow \text{next}(a)$.  If no such $p$ exists, skip (a remains unmatched).
 3. If $a \notin R_p$, re-enqueue $a$ and go to step 1.  *(Program does not rank applicant.)*
 4. **If** $|\mu^{-1}(p)| < q_p$ &nbsp;&nbsp; *(open slot)*:
+
 $$
 \mu^{-1}(p) \leftarrow \mu^{-1}(p) \cup \{a\}, \quad \mu(a) \leftarrow p
 $$
+
 5. **Else** *(program is full)*: let
 
 $$
-a^* = \underset{a' \in \mu^{-1}(p)}{\arg\max}\, \text{rank}_p(a')
+a^* = \underset{a' \in \mu^{-1}(p)}{\arg\max} \text{rank}_p(a')
 $$
 
-   - **If** $\text{rank}_p(a) < \text{rank}_p(a^{*})$ &nbsp;&nbsp; *($a$ is preferred over worst current match)*:
+   - **If** $\text{rank}_p(a) < \text{rank}_p(a^{\ast})$ &nbsp;&nbsp; *($a$ is preferred over worst current match)*:
 
 $$
 \mu^{-1}(p) \leftarrow \bigl(\mu^{-1}(p) \setminus \{a^{*}\}\bigr) \cup \{a\}
@@ -113,7 +115,7 @@ Since $\Pi$ is finite and strictly decreases the remaining proposal budget, the 
 Formally, let $\mathcal{S}$ denote the set of all stable matchings. Then for the output $\mu$ of Algorithm 1,
 
 $$
-\mu(a_i) \succeq_{a_i} \mu'(a_i) \quad \forall\, \mu' \in \mathcal{S},\; \forall\, a_i \in A
+\mu(a_i) \succeq_{a_i} \mu'(a_i) \quad \forall \mu' \in \mathcal{S},\quad \forall a_i \in A
 $$
 
 By the **rural hospitals theorem** [Roth, 1986](https://doi.org/10.2307/1913160), the set of unmatched applicants and the set of unfilled program slots are identical across every stable matching.
